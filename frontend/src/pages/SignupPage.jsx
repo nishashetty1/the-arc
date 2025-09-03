@@ -602,10 +602,7 @@ const SignupPage = () => {
                             name="fundingNeeds"
                             value={formData.fundingNeeds}
                             onChange={handleChange}
-                            options={investmentSizeOptions.map((size) => ({
-                              value: size.toLowerCase(),
-                              label: size,
-                            }))}
+                            options={investmentSizeOptions}
                             placeholder="Select funding range"
                           />
                         </div>
@@ -755,10 +752,7 @@ const SignupPage = () => {
                               investmentFocus: value,
                             }))
                           }
-                          options={industryOptions.map((industry) => ({
-                            value: industry.toLowerCase(),
-                            label: industry,
-                          }))}
+                          options={industryOptions}
                           multiple
                           searchable
                           placeholder="Select investment areas"
@@ -773,10 +767,7 @@ const SignupPage = () => {
                               stagePreference: value,
                             }))
                           }
-                          options={stageOptions.map((stage) => ({
-                            value: stage.toLowerCase(),
-                            label: stage,
-                          }))}
+                          options={stageOptions}
                           multiple
                           placeholder="Select preferred stages"
                         />
@@ -786,10 +777,7 @@ const SignupPage = () => {
                           name="investmentSize"
                           value={formData.investmentSize}
                           onChange={handleChange}
-                          options={investmentSizeOptions.map((size) => ({
-                            value: size.toLowerCase(),
-                            label: size,
-                          }))}
+                          options={investmentSizeOptions}
                           placeholder="Select investment range"
                           required
                         />
