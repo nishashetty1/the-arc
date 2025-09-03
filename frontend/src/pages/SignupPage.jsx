@@ -15,7 +15,7 @@ import {
   HiChevronDown,
   HiUpload,
   HiDocumentText,
-  HiCheckCircle
+  HiCheckCircle,
 } from "react-icons/hi";
 
 import { Button, Input, Alert, Card, Select, Dropdown } from "../components";
@@ -57,13 +57,10 @@ const SignupPage = () => {
 
   // Form data state
   const [formData, setFormData] = useState({
-    // Common fields
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
-
-    // Startup fields
     companyName: "",
     industry: "",
     description: "",
@@ -71,19 +68,54 @@ const SignupPage = () => {
     currentStage: "",
     fundingNeeds: "",
     teamSize: "",
-
-    // Individual fields
-    interests: [],
     skills: [],
+    interests: [],
     ideaDescription: "",
     lookingFor: "",
-
-    // Investor fields
     investmentFocus: [],
     stagePreference: [],
     investmentSize: "",
     companyAffiliation: "",
   });
+
+  const industryOptions = [
+    { value: "technology", label: "Technology" },
+    { value: "healthcare", label: "Healthcare" },
+    { value: "finance", label: "Finance" },
+    { value: "education", label: "Education" },
+    { value: "ecommerce", label: "E-Commerce" },
+    { value: "food", label: "Food & Beverage" },
+    { value: "entertainment", label: "Entertainment" },
+    { value: "realestate", label: "Real Estate" },
+  ];
+
+  const stageOptions = [
+    { value: "idea", label: "Idea" },
+    { value: "prototype", label: "Prototype" },
+    { value: "mvp", label: "MVP" },
+    { value: "launched", label: "Launched" },
+    { value: "growth", label: "Growth" },
+    { value: "scaling", label: "Scaling" },
+  ];
+
+  const skillOptions = [
+    { value: "programming", label: "Programming" },
+    { value: "design", label: "Design" },
+    { value: "marketing", label: "Marketing" },
+    { value: "finance", label: "Finance" },
+    { value: "sales", label: "Sales" },
+    { value: "product", label: "Product Management" },
+    { value: "business", label: "Business Development" },
+    { value: "research", label: "Research" },
+  ];
+
+  const investmentSizeOptions = [
+    { value: "under50k", label: "Under 50K" },
+    { value: "50k-250k", label: "50K - 250K" },
+    { value: "250k-1m", label: "250K - 1M" },
+    { value: "1m-5m", label: "1M - 5M" },
+    { value: "over5m", label: "Over 5M" },
+  ];
 
   // Update URL when user type changes
   useEffect(() => {
@@ -198,45 +230,6 @@ const SignupPage = () => {
       color: "bg-secondary-100 text-secondary-600",
     },
   };
-
-  const industryOptions = [
-    "Technology",
-    "Healthcare",
-    "Finance",
-    "Education",
-    "E-Commerce",
-    "Food & Beverage",
-    "Entertainment",
-    "Real Estate",
-  ];
-
-  const skillOptions = [
-    "Programming",
-    "Design",
-    "Marketing",
-    "Finance",
-    "Sales",
-    "Product Management",
-    "Business Development",
-    "Research",
-  ];
-
-  const stageOptions = [
-    "Idea",
-    "Prototype",
-    "MVP",
-    "Launched",
-    "Growth",
-    "Scaling",
-  ];
-
-  const investmentSizeOptions = [
-    "Under 50K",
-    "50K - 250K",
-    "250K - 1M",
-    "1M - 5M",
-    "Over 5M",
-  ];
 
   return (
     <div className="flex min-h-screen flex-col relative overflow-hidden">
@@ -544,10 +537,7 @@ const SignupPage = () => {
                             name="industry"
                             value={formData.industry}
                             onChange={handleChange}
-                            options={industryOptions.map((industry) => ({
-                              value: industry.toLowerCase(),
-                              label: industry,
-                            }))}
+                            options={industryOptions}
                             placeholder="Select industry"
                             required
                           />
@@ -557,10 +547,7 @@ const SignupPage = () => {
                             name="currentStage"
                             value={formData.currentStage}
                             onChange={handleChange}
-                            options={stageOptions.map((stage) => ({
-                              value: stage.toLowerCase(),
-                              label: stage,
-                            }))}
+                            options={stageOptions}
                             placeholder="Select stage"
                             required
                           />
@@ -657,29 +644,17 @@ const SignupPage = () => {
                       </h2>
 
                       <div className="space-y-6">
-                        <div>
-                          <label className="block text-sm font-medium text-white mb-2">
-                            Skills (Select all that apply)
-                          </label>
-                          <div className="flex flex-wrap gap-2">
-                            {skillOptions.map((skill) => (
-                              <button
-                                key={skill}
-                                type="button"
-                                onClick={() =>
-                                  handleArrayChange("skills", skill)
-                                }
-                                className={`px-4 py-2 rounded-full text-sm ${
-                                  formData.skills.includes(skill)
-                                    ? "bg-accent-600 text-white"
-                                    : "bg-white/20 text-white hover:bg-white/30"
-                                } transition-colors`}
-                              >
-                                {skill}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
+                        <Dropdown
+                          label="Skills"
+                          value={formData.skills}
+                          onChange={(value) =>
+                            setFormData((prev) => ({ ...prev, skills: value }))
+                          }
+                          options={skillOptions}
+                          multiple
+                          searchable
+                          placeholder="Select your skills"
+                        />
 
                         <div>
                           <label className="block text-sm font-medium text-white mb-2">
@@ -1028,10 +1003,7 @@ const SignupPage = () => {
                           Back
                         </Button>
 
-                        <Button
-                          onClick={handleSubmit}
-                          isLoading={isLoading}
-                        >
+                        <Button onClick={handleSubmit} isLoading={isLoading}>
                           Complete Signup
                         </Button>
                       </div>
@@ -1115,10 +1087,7 @@ const SignupPage = () => {
                           Back
                         </Button>
 
-                        <Button
-                          onClick={handleSubmit}
-                          isLoading={isLoading}
-                        >
+                        <Button onClick={handleSubmit} isLoading={isLoading}>
                           Complete Signup
                         </Button>
                       </div>
