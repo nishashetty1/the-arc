@@ -70,7 +70,7 @@ const LandingPage = () => {
   const features = [
     {
       icon: HiLightningBolt,
-      title: "AI-Powered Matching",
+      title: "Matching",
       description:
         "Our advanced algorithm analyzes your startup's DNA to find the perfect investors and co-founders who align with your vision and values.",
       color: "primary",
@@ -141,7 +141,7 @@ const LandingPage = () => {
               className="mx-auto mt-8 max-w-2xl text-xl leading-8 text-primary-100"
             >
               Connect with investors, co-founders, and mentors who believe in
-              your vision. Our AI-powered platform matches you with the right
+              your vision. Our platform matches you with the right
               people at the right time.
             </motion.p>
 
