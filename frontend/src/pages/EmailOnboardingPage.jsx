@@ -20,11 +20,11 @@ import { Button, Input, Select, Alert, Spinner } from "../components";
 import { OnboardingLayout } from "../components";
 import { registerWithEmailAndPassword } from "../services/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
-import { db, storage } from "../utils/firebase/config";
+import { db } from "../utils/firebase/config";
 import useAuthStore from "../stores/authStore";
 import { INDUSTRIES, INTEREST_DOMAINS } from "../utils/constants/industries";
+import { uploadImageToCloudinary } from "../utils/cloudinary/imageUpload";
 
 const EmailOnboardingPage = () => {
   const navigate = useNavigate();
@@ -231,14 +231,15 @@ const EmailOnboardingPage = () => {
     if (!profileImageFile) return null;
     
     try {
-      const fileExtension = profileImageFile.name.split('.').pop();
-      const fileName = `${userId}_${Date.now()}.${fileExtension}`;
-      const storageRef = ref(storage, `profileImages/${fileName}`);
+      // Upload to Cloudinary instead of Firebase Storage
+      const result = await uploadImageToCloudinary(profileImageFile, {
+        folder: 'profile-images',
+        transformation: [
+          { width: 400, height: 400, crop: 'fill', gravity: 'face' }
+        ]
+      });
       
-      await uploadBytes(storageRef, profileImageFile);
-      const downloadURL = await getDownloadURL(storageRef);
-      
-      return downloadURL;
+      return result.secure_url;
     } catch (error) {
       console.error("Error uploading profile image:", error);
       throw error;
