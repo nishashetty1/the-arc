@@ -239,7 +239,7 @@ const EmailOnboardingPage = () => {
         ]
       });
       
-      return result.secure_url;
+      return result.url;
     } catch (error) {
       console.error("Error uploading profile image:", error);
       throw error;
