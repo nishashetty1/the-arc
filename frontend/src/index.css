@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Primary: Electric Grape */
+  --color-primary-50: #f3f0ff;
+  --color-primary-100: #e0d7ff;
+  --color-primary-200: #c2b0ff;
+  --color-primary-300: #a387fc;
+  --color-primary-400: #855df9;
+  --color-primary-500: #6e3ff3;
+  --color-primary-600: #532bc6;
+  --color-primary-700: #3f1f94;
+  --color-primary-800: #2a1567;
+  --color-primary-900: #1c0f44;
+  --color-primary-950: #12082c;
+
+  /* Secondary: Soft Gold / Champagne */
+  --color-secondary-50: #fefcf8;
+  --color-secondary-100: #f9f1dd;
+  --color-secondary-200: #f0e0b6;
+  --color-secondary-300: #e6cb88;
+  --color-secondary-400: #d9b45b;
+  --color-secondary-500: #c79b2e;
+  --color-secondary-600: #a07a1f;
+  --color-secondary-700: #7a5a17;
+  --color-secondary-800: #533f10;
+  --color-secondary-900: #33290a;
+  --color-secondary-950: #1e1804;
+
+  /* Accent: Cerise / Bold Tech Pink */
+  --color-accent-50: #fff0f5;
+  --color-accent-100: #ffd0e3;
+  --color-accent-200: #ff9fc4;
+  --color-accent-300: #ff6da6;
+  --color-accent-400: #f9358b;
+  --color-accent-500: #e60073;
+  --color-accent-600: #b8005a;
+  --color-accent-700: #8e0045;
+  --color-accent-800: #650030;
+  --color-accent-900: #3d001c;
+  --color-accent-950: #240011;
+
+  /* Neutrals: Warm Tech Grey */
+  --color-neutral-50: #f9f9fa;
+  --color-neutral-100: #f0f0f2;
+  --color-neutral-200: #dedee3;
+  --color-neutral-300: #bdbdc6;
+  --color-neutral-400: #8d8d99;
+  --color-neutral-500: #5f5f6b;
+  --color-neutral-600: #464654;
+  --color-neutral-700: #323240;
+  --color-neutral-800: #21212e;
+  --color-neutral-900: #15151f;
+  --color-neutral-950: #0c0c13;
+
+  /* Optional Tertiary Colors (Backgrounds, Cards, UI Highlights) */
+  --color-jade-100: #dcfce7;
+  --color-jade-300: #6ee7b7;
+  --color-sky-mist-100: #f0f9ff;
+  --color-sky-mist-300: #7dd3fc;
+
+  /* Status Colors: Harmonized to fit palette */
+  --color-success: #2dd4bf; /* Bright Aqua */
+  --color-warning: #facc15; /* Yellow Gold */
+  --color-danger: #f43f5e; /* Pink-Red */
+  --color-info: #38bdf8; /* Cool Blue */
+
+  --font-family-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-family-display: Poppins, system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    line-height: 1.6;
+    color: var(--color-neutral-900);
+    background-color: var(--color-neutral-50);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-display);
+    font-weight: 600;
+  }
+}
+
+html {
+  font-size: 15px;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Ensure proper box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Add responsive padding to container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Custom Shadows for beautiful depth */
+.shadow-soft {
+  box-shadow: 0 1px 3px 0 rgba(110, 63, 243, 0.08), 0 1px 2px -1px rgba(110, 63, 243, 0.08);
+}
+
+.shadow-medium {
+  box-shadow: 0 4px 6px -1px rgba(110, 63, 243, 0.12), 0 2px 4px -2px rgba(110, 63, 243, 0.12);
+}
+
+.shadow-hard {
+  box-shadow: 0 10px 15px -3px rgba(110, 63, 243, 0.15), 0 4px 6px -4px rgba(110, 63, 243, 0.15);
+}
+
+.shadow-xl-colored {
+  box-shadow: 0 20px 25px -5px rgba(110, 63, 243, 0.2), 0 8px 10px -6px rgba(110, 63, 243, 0.2);
+}
+
+/* Smooth transitions for all interactive elements */
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus ring styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--color-secondary-400) 0%, var(--color-secondary-500) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent-400) 0%, var(--color-accent-500) 100%);
+}
+
+.gradient-purple-gold {
+  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-secondary-500) 100%);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-100);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-400);
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Custom Scrollbar Hide for Reels */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,11 @@
+rules_version = '2';
+
+// Craft rules based on your security requirements
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      // Allow read/write access to all files for development
+      allow read, write: if true;
+    }
+  }
+}
